@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  redis:
+    restart: always
+    image: redis:7.2.5
+    container_name: redis
+    hostname: redis
+    environment:
+      - DEBUG:false
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+    ports:
+      - "6379:6379"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '512M'
+    networks:
+      - external-net
+networks:
+  external-net:
+    name: external-net
+    external: true

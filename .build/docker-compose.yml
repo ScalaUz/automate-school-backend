@@ -1,0 +1,30 @@
+version: '3.9'
+services:
+  endpoints:
+    restart: always
+    container_name: aschool_endpoints
+    hostname: aschool_endpoints
+    image: uzscala/aschool_endpoints:latest
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/status" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    ports:
+      - "8000:8000"
+    environment:
+      ROOT_PATH: /opt/docker
+    volumes:
+      - "./logs/:/opt/docker/logs/"
+      - "./conf/endpoints/:/opt/docker/conf/"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1G'
+    networks:
+      - external-net
+networks:
+  external-net:
+    name: external-net
+    external: true

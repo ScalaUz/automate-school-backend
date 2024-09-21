@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  nginx:
+    restart: always
+    image: nginx
+    container_name: nginx
+    volumes:
+      - ./configs:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - external-net
+networks:
+  external-net:
+    name: external-net
+    external: true

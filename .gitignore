@@ -1,0 +1,7 @@
+.bsp
+.idea
+.local
+target
+.env
+local.conf
+application.log

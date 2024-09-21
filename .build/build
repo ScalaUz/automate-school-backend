@@ -1,0 +1,42 @@
+#!/bin/bash
+ # Find local address and set to variable
+ export local_ip=$(hostname -I | cut -d' ' -f1)
+ source base.sh
+ echo $local_ip
+ if [ ! -d "/srv" ]; then
+    # Create the folder
+    sudo mkdir /srv
+    echo "Folder /srv created."
+ fi
+ if [ ! -d "/srv/conf" ]; then
+    # Create the folder
+    sudo mkdir /srv/conf
+    echo "Folder /srv/conf/ created."
+ fi
+ if [ ! -d "/srv/conf/aschool" ]; then
+    # Create the folder
+    sudo mkdir /srv/conf/aschool
+    echo "Folder /srv/conf/aschool created."
+ fi
+
+ sudo touch /srv/conf/aschool/local.conf
+ sudo bash -c 'echo "include \"reference.conf\"" > /srv/conf/aschool/local.conf'
+ sudo bash -c 'echo "REDIS_URI=\"redis://'"$local_ip"'\"" >> /srv/conf/aschool/local.conf'
+
+ cd postgres
+ docker compose down
+ docker compose up -d
+ docker exec -i postgres psql -U postgres < setup.sql
+ cd ../redis
+ docker compose down
+ docker compose up -d
+ cd ../../
+ sbt "docker:publishLocal"
+
+ cd .build
+ docker compose down
+ docker compose up -d
+
+ cd nginx
+ docker compose down
+ docker compose up -d
