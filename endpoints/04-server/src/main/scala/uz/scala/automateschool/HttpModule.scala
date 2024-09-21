@@ -27,6 +27,8 @@ object HttpModule {
       .of[Routes[F, AuthedUser]](
         new AuthRoutes[F](env.algebras.auth),
         new RootRoutes[F],
+        new SubjectsRoutes[F](env.algebras.subjects),
+        new TeachersRoutes[F](env.algebras.Teachers),
       )
       .map { r =>
         Router(

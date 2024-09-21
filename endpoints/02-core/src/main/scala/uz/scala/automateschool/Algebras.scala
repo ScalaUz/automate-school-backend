@@ -5,16 +5,18 @@ import cats.effect.std.Random
 import org.typelevel.log4cats.Logger
 import tsec.passwordhashers.PasswordHasher
 import tsec.passwordhashers.jca.SCrypt
-import uz.scala.automateschool.auth.AuthConfig
-import uz.scala.automateschool.domain.AuthedUser
-import uz.scala.redis.RedisClient
+
 import uz.scala.automateschool.algebras._
 import uz.scala.automateschool.auth.AuthConfig
 import uz.scala.automateschool.auth.impl.Auth
+import uz.scala.automateschool.domain.AuthedUser
+import uz.scala.redis.RedisClient
 
 case class Algebras[F[_]](
     auth: Auth[F, AuthedUser],
     users: UsersAlgebra[F],
+    subjects: SubjectsAlgebra[F],
+    Teachers: TeachersAlgebra[F],
   )
 
 object Algebras {
@@ -29,6 +31,8 @@ object Algebras {
     Algebras[F](
       auth = Auth.make[F](config, users, redis),
       users = users,
+      subjects = SubjectsAlgebra.make[F](repositories.subjects),
+      Teachers = TeachersAlgebra.make[F](repositories.teachers),
     )
   }
 }
