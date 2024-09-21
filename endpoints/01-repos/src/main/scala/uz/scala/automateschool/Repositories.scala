@@ -10,7 +10,9 @@ case class Repositories[F[_]](
     users: UsersRepository[F],
     subjects: SubjectsRepository[F],
     teachers: TeachersRepository[F],
+    groups: GroupsRepository[F],
   )
+
 object Repositories {
   def make[F[_]: Async](
       implicit
@@ -20,5 +22,6 @@ object Repositories {
       users = UsersRepository.make[F],
       subjects = SubjectsRepository.make[F],
       teachers = TeachersRepository.make[F],
+      groups = GroupsRepository.make[F],
     )
 }

@@ -17,6 +17,7 @@ case class Algebras[F[_]](
     users: UsersAlgebra[F],
     subjects: SubjectsAlgebra[F],
     Teachers: TeachersAlgebra[F],
+    groups: GroupsAlgebra[F],
   )
 
 object Algebras {
@@ -33,6 +34,7 @@ object Algebras {
       users = users,
       subjects = SubjectsAlgebra.make[F](repositories.subjects),
       Teachers = TeachersAlgebra.make[F](repositories.teachers),
+      groups = GroupsAlgebra.make[F](repositories.groups),
     )
   }
 }

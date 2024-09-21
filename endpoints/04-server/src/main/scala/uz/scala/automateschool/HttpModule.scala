@@ -29,6 +29,7 @@ object HttpModule {
         new RootRoutes[F],
         new SubjectsRoutes[F](env.algebras.subjects),
         new TeachersRoutes[F](env.algebras.Teachers),
+        new GroupsRoutes[F](env.algebras.groups),
       )
       .map { r =>
         Router(
