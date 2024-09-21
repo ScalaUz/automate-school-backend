@@ -27,13 +27,11 @@ import uz.scala.automateschool.auth.utils.JwtExpire
 import uz.scala.automateschool.auth.utils.Tokens
 import uz.scala.automateschool.domain.AuthedUser
 import uz.scala.automateschool.domain.auth._
-import uz.scala.automateschool.exception.AError
 import uz.scala.automateschool.exception.AError.AuthError
 import uz.scala.automateschool.exception.AError.AuthError.NoSuchUser
 import uz.scala.automateschool.exception.AError.AuthError.PasswordDoesNotMatch
 import uz.scala.redis.RedisClient
 import uz.scala.syntax.all.circeSyntaxDecoderOps
-import uz.scala.syntax.refined.commonSyntaxAutoRefineV
 import uz.scala.syntax.refined.commonSyntaxAutoUnwrapV
 
 trait Auth[F[_], A] {
@@ -64,7 +62,7 @@ object Auth {
         )(implicit
           language: Language
         ): F[AuthTokens] =
-        users.findByEmail(credentials.email).flatMap {
+        users.findByPhone(credentials.phone).flatMap {
           case None =>
             NoSuchUser(USER_NOT_FOUND(language)).raiseError[F, AuthTokens]
           case Some(user) if !SCrypt.checkpwUnsafe(credentials.password.value, user.password) =>

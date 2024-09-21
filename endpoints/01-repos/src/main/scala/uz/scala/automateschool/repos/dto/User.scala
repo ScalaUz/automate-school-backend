@@ -5,13 +5,13 @@ import io.scalaland.chimney.dsl.TransformerOps
 import tsec.passwordhashers.PasswordHash
 import tsec.passwordhashers.jca.SCrypt
 
-import uz.scala.automateschool.EmailAddress
+import uz.scala.automateschool.Phone
 import uz.scala.automateschool.domain.UserId
 
 case class User(
     id: UserId,
     name: NonEmptyString,
-    email: EmailAddress,
+    phone: Phone,
     password: PasswordHash[SCrypt],
     createdAt: java.time.ZonedDateTime,
     updatedAt: Option[java.time.ZonedDateTime] = None,

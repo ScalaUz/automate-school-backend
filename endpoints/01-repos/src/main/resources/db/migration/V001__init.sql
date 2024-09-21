@@ -9,7 +9,7 @@ CREATE TYPE SUBJECT_CATEGORY AS ENUM (
 CREATE TABLE IF NOT EXISTS users(
   id UUID PRIMARY KEY NOT NULL,
   name VARCHAR NOT NULL,
-  email VARCHAR NOT NULL UNIQUE,
+  phone VARCHAR NOT NULL UNIQUE,
   password VARCHAR NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE NOT NULL,
   updated_at TIMESTAMP WITH TIME ZONE,
@@ -17,13 +17,13 @@ CREATE TABLE IF NOT EXISTS users(
 );
 
 INSERT INTO
-  users (id, created_at, name, email, password)
+  users (id, created_at, name, phone, password)
 VALUES
   (
     '72a911c8-ad24-4e2d-8930-9c3ba51741df',
     '2023-06-30T16:02:51+05:00',
     'admin',
-    'admin@scala.uz',
+    '+998901234567',
     '$s0$e0801$5JK3Ogs35C2h5htbXQoeEQ==$N7HgNieSnOajn1FuEB7l4PhC6puBSq+e1E8WUaSJcGY='
   );
 

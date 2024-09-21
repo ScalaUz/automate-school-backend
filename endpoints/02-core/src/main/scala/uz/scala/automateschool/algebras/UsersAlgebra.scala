@@ -7,7 +7,7 @@ import cats.implicits.toFunctorOps
 import tsec.passwordhashers.PasswordHasher
 import tsec.passwordhashers.jca.SCrypt
 
-import uz.scala.automateschool.EmailAddress
+import uz.scala.automateschool.Phone
 import uz.scala.automateschool.domain.UserId
 import uz.scala.automateschool.domain.users.UserInput
 import uz.scala.automateschool.domain.users.UserUpdateInput
@@ -21,7 +21,7 @@ import uz.scala.automateschool.utils.ID
 trait UsersAlgebra[F[_]] {
   def create(userInfo: UserInput): F[UserId]
   def findById(id: UserId): F[Option[dto.User]]
-  def findByEmail(email: EmailAddress): F[Option[dto.User]]
+  def findByPhone(phone: Phone): F[Option[dto.User]]
   def update(id: UserId, userUpdate: UserUpdateInput): F[Unit]
   def delete(id: UserId): F[Unit]
 }
@@ -39,22 +39,21 @@ object UsersAlgebra {
           now <- Calendar[F].currentZonedDateTime
           passwordStr <- randomStr[F](6)
           hash <- SCrypt.hashpw[F](passwordStr)
-
           user = dto.User(
             id = id,
             createdAt = now,
             name = userInfo.name,
-            email = userInfo.email,
+            phone = userInfo.phone,
             password = hash,
           )
-
           _ <- usersRepository.create(user)
         } yield id
 
       override def findById(id: UserId): F[Option[dto.User]] =
         usersRepository.findById(id)
-      override def findByEmail(email: EmailAddress): F[Option[dto.User]] =
-        usersRepository.find(email)
+
+      override def findByPhone(phone: Phone): F[Option[dto.User]] =
+        usersRepository.findByPhone(phone)
 
       override def update(id: UserId, userUpdate: UserUpdateInput): F[Unit] =
         usersRepository.update(id)(_.copy(name = userUpdate.name))

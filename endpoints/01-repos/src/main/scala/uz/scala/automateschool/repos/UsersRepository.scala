@@ -5,15 +5,15 @@ import cats.effect.Async
 import cats.effect.Resource
 import skunk._
 
-import uz.scala.skunk.syntax.all._
-import uz.scala.automateschool.EmailAddress
+import uz.scala.automateschool.Phone
 import uz.scala.automateschool.domain.UserId
 import uz.scala.automateschool.exception.AError
 import uz.scala.automateschool.repos.dto.User
 import uz.scala.automateschool.repos.sql.UsersSql
+import uz.scala.skunk.syntax.all._
 
 trait UsersRepository[F[_]] {
-  def find(email: EmailAddress): F[Option[User]]
+  def findByPhone(phone: Phone): F[Option[User]]
   def create(userAndHash: User): F[Unit]
   def findById(id: UserId): F[Option[User]]
   def update(id: UserId)(update: User => User): F[Unit]
@@ -25,8 +25,8 @@ object UsersRepository {
       implicit
       session: Resource[F, Session[F]]
     ): UsersRepository[F] = new UsersRepository[F] {
-    override def find(email: EmailAddress): F[Option[User]] =
-      UsersSql.findByLogin.queryOption(email)
+    override def findByPhone(phone: Phone): F[Option[User]] =
+      UsersSql.findByPhone.queryOption(phone)
 
     override def create(user: User): F[Unit] =
       UsersSql.insert.execute(user)

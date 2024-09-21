@@ -8,16 +8,13 @@ import org.http4s.HttpRoutes
 import org.http4s.circe.JsonDecoder
 import org.typelevel.log4cats.Logger
 
-import uz.scala.http4s.syntax.all.deriveEntityEncoder
-import uz.scala.http4s.syntax.all.http4SyntaxReqOps
-import uz.scala.http4s.utils.Routes
-import uz.scala.syntax.refined.commonSyntaxAutoRefineV
 import uz.scala.automateschool.Language
 import uz.scala.automateschool.auth.impl.Auth
 import uz.scala.automateschool.domain.AuthedUser
-import uz.scala.automateschool.domain.SuccessResult
-import uz.scala.automateschool.domain.auth.CustomerCredentials
 import uz.scala.automateschool.domain.auth.UserCredentials
+import uz.scala.http4s.syntax.all.deriveEntityEncoder
+import uz.scala.http4s.syntax.all.http4SyntaxReqOps
+import uz.scala.http4s.utils.Routes
 
 final case class AuthRoutes[F[_]: Logger: JsonDecoder: MonadThrow](
     auth: Auth[F, AuthedUser]
