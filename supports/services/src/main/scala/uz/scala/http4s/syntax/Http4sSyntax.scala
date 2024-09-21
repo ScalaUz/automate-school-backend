@@ -28,8 +28,8 @@ import uz.scala.http4s.utils.MapConvert
 import uz.scala.http4s.utils.MapConvert.ValidationResult
 import uz.scala.syntax.all.circeSyntaxDecoderOps
 import uz.scala.syntax.all.genericSyntaxGenericTypeOps
-import uz.scala.timetable.Language
-import uz.scala.timetable.exception.AError
+import uz.scala.automateschool.Language
+import uz.scala.automateschool.exception.AError
 
 trait Http4sSyntax {
   implicit def http4SyntaxReqOps[F[_]: MonadThrow](

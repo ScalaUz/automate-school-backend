@@ -1,4 +1,4 @@
-package uz.scala.timetable.utils
+package uz.scala.automateschool.utils
 
 import scala.reflect.ClassTag
 
@@ -7,8 +7,8 @@ import cats.effect.Sync
 import cats.implicits.catsSyntaxApplicativeErrorId
 import pureconfig.ConfigReader
 import pureconfig.ConfigSource
-import uz.scala.automate_school.Mode._
-import uz.scala.automate_school.Mode
+import uz.scala.automateschool.Mode._
+import uz.scala.automateschool.Mode
 
 object ConfigLoader {
   def load[F[_]: Sync, Conf: ConfigReader: ClassTag]: F[Conf] = {

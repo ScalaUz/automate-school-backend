@@ -8,8 +8,8 @@ import org.http4s.Response
 import org.http4s.dsl.Http4sDsl
 import org.typelevel.log4cats.Logger
 import uz.scala.http4s.utils.HttpErrorHandler
-import uz.scala.timetable.exception.AError.AuthError
-import uz.scala.timetable.exception.AError
+import uz.scala.automateschool.exception.AError.AuthError
+import uz.scala.automateschool.exception.AError
 class LiveHttpErrorHandler[F[_]: MonadThrow](
     implicit
     logger: Logger[F]

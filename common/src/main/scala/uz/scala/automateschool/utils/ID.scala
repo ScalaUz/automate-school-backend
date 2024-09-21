@@ -1,8 +1,10 @@
-package uz.scala.timetable.utils
+package uz.scala.automateschool.utils
 
 import cats.Functor
 import cats.implicits.toFunctorOps
-import uz.scala.timetable.effects.{GenUUID, IsUUID}
+
+import uz.scala.automateschool.effects.GenUUID
+import uz.scala.automateschool.effects.IsUUID
 
 object ID {
   def make[F[_]: Functor: GenUUID, A: IsUUID]: F[A] =

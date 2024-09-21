@@ -1,4 +1,4 @@
-package uz.scala.timetable.effects
+package uz.scala.automateschool.effects
 
 import java.util.UUID
 

@@ -1,4 +1,4 @@
-package uz.scala.timetable.exception
+package uz.scala.automateschool.exception
 
 import io.circe.Json
 

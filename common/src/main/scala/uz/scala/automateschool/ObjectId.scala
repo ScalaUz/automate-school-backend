@@ -1,4 +1,4 @@
-package uz.scala.timetable
+package uz.scala.automateschool
 
 import java.util.UUID
 
