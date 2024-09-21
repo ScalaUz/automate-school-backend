@@ -11,6 +11,7 @@ case class Repositories[F[_]](
     subjects: SubjectsRepository[F],
     teachers: TeachersRepository[F],
     groups: GroupsRepository[F],
+    timetable: TimetableRepository[F],
   )
 
 object Repositories {
@@ -23,5 +24,6 @@ object Repositories {
       subjects = SubjectsRepository.make[F],
       teachers = TeachersRepository.make[F],
       groups = GroupsRepository.make[F],
+      timetable = TimetableRepository.make[F],
     )
 }

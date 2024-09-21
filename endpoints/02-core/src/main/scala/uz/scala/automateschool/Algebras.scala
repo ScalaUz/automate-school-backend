@@ -18,6 +18,7 @@ case class Algebras[F[_]](
     subjects: SubjectsAlgebra[F],
     Teachers: TeachersAlgebra[F],
     groups: GroupsAlgebra[F],
+    timetable: TimetableAlgebra[F]
   )
 
 object Algebras {
@@ -35,6 +36,12 @@ object Algebras {
       subjects = SubjectsAlgebra.make[F](repositories.subjects),
       Teachers = TeachersAlgebra.make[F](repositories.teachers),
       groups = GroupsAlgebra.make[F](repositories.groups),
+      timetable = TimetableAlgebra.make[F](
+        repositories.timetable,
+        repositories.subjects,
+        repositories.groups,
+        repositories.teachers,
+      ),
     )
   }
 }
