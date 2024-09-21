@@ -2,9 +2,9 @@ version: '3.9'
 services:
   endpoints:
     restart: always
-    container_name: aschool_endpoints
-    hostname: aschool_endpoints
-    image: uzscala/aschool_endpoints:latest
+    container_name: aschool-endpoints
+    hostname: aschool-endpoints
+    image: aschool-endpoints:latest
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8000/status" ]
       interval: 30s

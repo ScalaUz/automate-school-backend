@@ -12,12 +12,12 @@ import org.http4s.circe.JsonDecoder
 import org.http4s.server.Router
 import org.typelevel.log4cats.Logger
 
-import uz.scala.http4s.HttpServer
-import uz.scala.http4s.utils.Routes
 import uz.scala.automateschool.api.routes.AuthRoutes
 import uz.scala.automateschool.api.routes._
 import uz.scala.automateschool.domain.AuthedUser
 import uz.scala.automateschool.http.Environment
+import uz.scala.http4s.HttpServer
+import uz.scala.http4s.utils.Routes
 
 object HttpModule {
   private def allRoutes[F[_]: Async: JsonDecoder: Dispatcher: Logger](
