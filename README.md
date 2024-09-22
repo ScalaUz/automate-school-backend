@@ -4,9 +4,9 @@
 ---
 https://excalidraw.com/#json=iLPqp6rSLCUa5e25OgJKP,BBDyIwKOUa5pPA-ApGEDOg
 ---
-## Frontend (aschool.vercel.app) 🔥
+## Frontend (http://aschool.scala.uz) 🔥
 ---
-https://aschool.vercel.app
+http://aschool.scala.uz
 ---
 ## Backend technologies 🚀
 - Scala - https://www.scala-lang.org/
